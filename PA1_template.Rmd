@@ -11,10 +11,8 @@ Movement Activity Monitoring
 ============================  
 
 ### 1. Loading and preprocessing data 
-The script will run correctly if the file "activity.csv" has been downloaded and unzipped to the working directory.
 
 #### 1.1. Load the data 
-The script assumes that the data has been downloaded and unzipped to the working directory.
 
 * Load required libraries:
 ```{r}
@@ -22,6 +20,16 @@ library(lubridate)
 library(lattice)
 ```
 
+* Check whether the data file is in the working directory. If not, download and unzip it.
+```{r}
+if (!file.exists("activity.csv")) {
+  url <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
+  temp <- tempfile()
+  download.file(url, temp)
+  unzip(temp)
+  unlink(temp)
+}
+```
 * Read the data file:
 ```{r}
 activity <- read.csv("activity.csv")

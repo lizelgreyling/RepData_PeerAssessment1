@@ -205,11 +205,7 @@ hr {
 
 <h3>1. Loading and preprocessing data</h3>
 
-<p>The script will run correctly if the file &ldquo;activity.csv&rdquo; has been downloaded and unzipped to the working directory.</p>
-
 <h4>1.1. Load the data</h4>
-
-<p>The script assumes that the data has been downloaded and unzipped to the working directory.</p>
 
 <ul>
 <li>Load required libraries:</li>
@@ -217,6 +213,19 @@ hr {
 
 <pre><code class="r">library(lubridate)
 library(lattice)
+</code></pre>
+
+<ul>
+<li>Check whether the data file is in the working directory. If not, download and unzip it.</li>
+</ul>
+
+<pre><code class="r">if (!file.exists(&quot;activity.csv&quot;)) {
+  url &lt;- &quot;https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip&quot;
+  temp &lt;- tempfile()
+  download.file(url, temp)
+  unzip(temp)
+  unlink(temp)
+}
 </code></pre>
 
 <ul>
