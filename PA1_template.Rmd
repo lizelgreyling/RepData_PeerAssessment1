@@ -10,10 +10,10 @@ output:
 Movement Activity Monitoring
 ============================  
 
-### 1. Loading and preprocessing data ##
+### 1. Loading and preprocessing data 
 The script will run correctly if the file "activity.csv" has been downloaded and unzipped to the working directory.
 
-#### 1.1. Load the data ####
+#### 1.1. Load the data 
 The script assumes that the data has been downloaded and unzipped to the working directory.
 
 * Load required libraries:
@@ -26,11 +26,11 @@ library(lattice)
 ```{r}
 activity <- read.csv("activity.csv")
 ```
-* Change the date field from factors to date values, using the libridate function ymd():
+* Change the date field from factors to date values, using the libridate function ymd(). This will be usefull later, when determining the day of the week. 
 ```{r}
 activity$date <- ymd(activity$date)
 ```
-#### 1.2. Process/transform the data into a format suitable for the analysis #### 
+#### 1.2. Process/transform the data into a format suitable for the analysis 
 
 * Summarise the steps per day:
 ```{r}
@@ -38,16 +38,16 @@ daysteps <- aggregate(steps ~ date, data = activity, sum)
 
 ```
 
-### 2. What is the mean total number of steps taken per day? ##  
+### 2. What is the mean total number of steps taken per day?   
   
-For this part of the assignment, the missing values in the dataset are ignored.
+*For this part of the assignment, the missing values in the dataset are ignored.*
 
-#### 2.1. Histogram of the total number of steps taken each day ####
+#### 2.1. Histogram of the total number of steps taken each day 
 ```{r histogram}
 hist(daysteps$steps, main = "Histogram of steps per day", xlab = "Steps per day")
 ```  
   
-#### 2.2. Calculate and report the mean and median total number of steps taken per day ####
+#### 2.2. Mean and median total number of steps taken per day 
 
 ```{r}
 options(scipen=999)  #Used to remove scientific notation, makes output look nicer.
@@ -57,8 +57,7 @@ median(daysteps$steps)
 The mean number of steps per day is **`r format(mean(daysteps$steps),digits=0)`** steps while the median is **`r median(daysteps$steps)`** steps.   
 
 ### 3. Average daily activity pattern  
-Create a dataset with the average number of steps per interval.  
-
+Create a dataset with the average number of steps per interval:  
 ```{r}
 intervalsteps <- aggregate(steps ~ interval, data = activity, mean)
 names(intervalsteps) <- c("interval","stepsmean")  
