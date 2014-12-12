@@ -1,6 +1,11 @@
-# Reproducible Research: Peer Assessment 1
-Lizel Greyling  
-December 12, 2014  
+---
+title: "Reproducible Research: Peer Assessment 1"
+author: "Lizel Greyling"
+date: "December 12, 2014"
+output: 
+  html_document:
+    keep_md: true
+---    
 
 Movement Activity Monitoring
 ============================  
@@ -46,7 +51,7 @@ For this part of the assignment, the missing values in the dataset are ignored.
 hist(daysteps$steps, main = "Histogram of steps per day", xlab = "Steps per day")
 ```
 
-![](./PA1_template_files/figure-html/histogram-1.png) 
+![plot of chunk histogram](figure/histogram-1.png) 
   
 #### 2.2. Calculate and report the mean and median total number of steps taken per day ####
 
@@ -84,7 +89,7 @@ names(intervalsteps) <- c("interval","stepsmean")
 plot(stepsmean ~ interval, data = intervalsteps, type = "l",main = "Average steps per interval", xlab = "Interval", ylab="Average steps")
 ```
 
-![](./PA1_template_files/figure-html/timeseriesplot-1.png) 
+![plot of chunk timeseriesplot](figure/timeseriesplot-1.png) 
 
 #### 3.2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -167,7 +172,7 @@ daystepsclean <- aggregate(steps ~ date, data = activityclean, sum)
 hist(daystepsclean$steps, main = "Histogram of steps per day: NA's removed", xlab = "Steps per day")
 ```
 
-![](./PA1_template_files/figure-html/histogram2-1.png) 
+![plot of chunk histogram2](figure/histogram2-1.png) 
 
 ```r
 mean(daystepsclean$steps)
@@ -217,4 +222,4 @@ cleanintervalsteps <- aggregate(steps ~ wday + interval, data = activityclean, m
 xyplot(steps ~ interval|wday, type = "l", data = cleanintervalsteps,layout = c(1,2))
 ```
 
-![](./PA1_template_files/figure-html/panelplot-1.png) 
+![plot of chunk panelplot](figure/panelplot-1.png) 
